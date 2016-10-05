@@ -5,52 +5,16 @@ var ObjectId = require('mongodb').ObjectId;
 
 var router = function (nav) {
 
-    bookRouter.use(function (req, res, next) {
-        if (!req.user) {
-            res.redirect('/');
-        }
-        next();
-    });
+    var bookService = require('../services/goodreadsService.js')();
+    var bookController = require('../controllers/bookController')(bookService, nav);
+    bookRouter.use(bookController.middleware);
 
     bookRouter.route('/')
-        .get(function (req, res) {
-
-            var url = 'mongodb://localhost:27017/libraryApp';
-
-            mongodb.connect(url, function (err, db) {
-                var collection = db.collection('books');
-                collection.find({}).toArray(function (err, results) {
-                    res.render('bookListView', {
-                        title: 'Hello from render',
-                        nav: nav,
-                        books: results
-                    });
-
-                    db.close();
-                });
-            });
-        });
+        .get(bookController.getIndex);
 
     bookRouter.route('/:id')
-        .get(function (req, res) {
-            var id = new ObjectId(req.params.id);
-            var url = 'mongodb://localhost:27017/libraryApp';
-
-            mongodb.connect(url, function (err, db) {
-                var collection = db.collection('books');
-                collection.findOne({
-                    _id: id
-                }, function (err, result) {
-                    res.render('bookView', {
-                        title: 'Hello from render',
-                        nav: nav,
-                        book: result
-                    });
-                    db.close();
-                });
-            });
-
-        });
+        .get(bookController.getById);
+    
     return bookRouter;
 };
 

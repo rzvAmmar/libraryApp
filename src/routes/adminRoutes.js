@@ -7,15 +7,25 @@ var mongodb = require('mongodb').MongoClient;
 var books = [
     {
         title: 'War and Peace',
-        author: 'Leo Tolstoy'
+        author: 'Leo Tolstoy',
+        bookId: 656
     },
     {
         title: 'Les Miserables',
-        author: 'Victor Hugo'
+        author: 'Victor Hugo',
+        bookId: 24280
     }
 ];
 
 var router = function (nav) {
+
+    adminRouter.use(function (req, res, next) {
+        if (req.user && req.user.userName === 'admin') {
+            next();
+        } else {
+            res.redirect('/');
+        }
+    });
 
     adminRouter.route('/')
         .get(function (req, res) {
