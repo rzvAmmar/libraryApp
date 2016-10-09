@@ -43,7 +43,10 @@ app.use('/auth', authRouter);
 app.get('/', function (request, response) {
     response.render('index', {
         title: 'Hello from render',
-        nav: nav
+        nav: nav,
+        userWelcome: {
+            userValid: request.user
+        }
     });
 });
 

@@ -100,12 +100,15 @@
     <div class="col-md-12"> 
       
       <div class="panel">
-        <div class="panel-body">
-          
-          
-          
+        <div class="panel-body">    
+          <% if (userWelcome.userValid && userWelcome.userValid.userName) { %>
+            <h4>You are logged in, <%=userWelcome.userValid.userName%>!</h4>
+          <% } else { %>            
+            <h4>Please use the below options...</h4>
+          <% } %>            
           <!--/stories-->
-          <div class="row">    
+          <div class="row">
+              
             <br>
             <div class="col-md-2 col-sm-3 text-center">
                 Sign In
