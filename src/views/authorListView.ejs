@@ -104,20 +104,20 @@
           
           
           
-          <!--/stories-->
+          <!--/stories->
 
-          <% for(var i =0; i < books.length; i++) { %>    
+          < % for(var i =0; i < books.length; i++) { % >    
           <div class="row">    
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-title" href="#"><img alt="" src="<%=books[i].imageUrl%>" style="width:100px;height:100px" class="img-circle"></a>
+              <a class="story-title" href="#"><img alt="" src="< %=books[i].imageUrl% >" style="width:100px;height:100px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
-              <h3><%=books[i].title%></h3>
+              <h3>< %=books[i].title% ></h3>
               <div class="row">
                 <div class="col-xs-9">
-                    <h4><span class="label label-default"><%=books[i].author%></5></span></h4><h4>
-                  <small style="font-family:courier,'new courier';" class="text-muted"><a href="/books/<%=books[i]._id%>" class="text-muted">Read More</a></small>
+                    <h4><span class="label label-default">< %=books[i].author% ></5></span></h4><h4>
+                  <small style="font-family:courier,'new courier';" class="text-muted"><a href="/books/< %=books[i]._id% >" class="text-muted">Read More</a></small>
                   </h4></div>
                 <div class="col-xs-3"></div>
               </div>
@@ -125,10 +125,24 @@
             </div>
           </div>
           <hr>
-          <% } %>
+          < % } % -->
 
           <!--/stories-->
           
+
+          <div class="row">    
+            <br>
+            <div class="col-md-2 col-sm-3 text-center">
+              <a class="story-title" href="#">
+            </div>
+            <div class="col-md-10 col-sm-9">
+              <h2>This section is under construction...</h2>
+              </div>
+              <br><br>
+            </div>
+          </div>
+          <hr>
+
           
           <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
         
