@@ -43,6 +43,11 @@ app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 
+app.get('/wuc', function (request, response) {
+    response.render('wuc', {
+    });
+});
+
 app.get('/', function (request, response) {
     response.render('index', {
         title: 'Hello from render',
