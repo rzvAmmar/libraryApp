@@ -50,8 +50,9 @@ var bookController = function (bookService, nav) {
     var middleware = function (req, res, next) {
           if (!req.user) {
             res.redirect('/');
+        } else {
+            next();
         }
-        next();
     };
 
     return {

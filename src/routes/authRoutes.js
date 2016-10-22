@@ -10,35 +10,24 @@ var router = function () {
 
             mongodb.connect(url, function (err, db) {
                 var collection = db.collection('users');
-                console.log(req.body);
+                //console.log(req.body);
                 var user = {
                     userName: req.body.userName,
                     password: req.body.password
                 };
                 collection.insert(user, function (err, results) {
                     req.login(results.ops[0], function () {
-                        res.redirect('/auth/profile');
+                        res.redirect('/user');
                     });
                 });
             });
-        });
-
-    authRouter.route('/profile')
-        .all(function (req, res, next) {
-            if (!req.user) {
-                res.redirect('/');
-            }
-            next();
-        })
-        .get(function (req, res) {
-            res.json(req.user);
         });
 
     authRouter.route('/signIn')
         .post(passport.authenticate('local', {
             failureRedirect: '/'
         }), function (req, res) {
-            res.redirect('/books');
+            res.redirect('/user');
         });
 
     return authRouter;
